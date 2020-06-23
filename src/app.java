@@ -58,7 +58,10 @@ public class app {
 
     }
 
-    public static List<Contact> deleteContacts(List<Contact> infoOb, String contactName){
+    public static List<Contact> deleteContacts(List<Contact> infoOb){
+        Scanner deleteInput = new Scanner(System.in);
+        System.out.println("Which contact would you like to delete?");
+        String contactName = deleteInput.nextLine();
         for(int i = 0; i < infoOb.size(); i++){
             if(infoOb.get(i).getName().equals(contactName)){
                 infoOb.remove(i);
@@ -69,15 +72,24 @@ public class app {
         return infoOb;
     }
 
-    public static void searchContact(List<Contact> infoOb, String contactName){
+    public static void searchContact(List<Contact> infoOb){
+        Scanner searchName = new Scanner(System.in);
+        System.out.println("Which Contact would you like to search?");
+        String contactName = searchName.nextLine();
+
         for(int i = 0; i < infoOb.size(); i++){
             if(infoOb.get(i).getName().equals(contactName)){
                 System.out.println(infoOb.get(i).getName());
                 System.out.println(infoOb.get(i).getPhoneNumber());
-
-            }else {
+                break;
+            } else if(!(infoOb.get(i).getName().equals(contactName))) {
+                System.out.println("This contact is not in our list. Try again. \n");
+                System.out.println("");
+                break;
+            } else {
                 continue;
             }
+
         }
     }
 
@@ -109,15 +121,26 @@ public class app {
         System.out.println("Welcome to the contact manager app!");
         String choice;
 
+            do {
 
-            choice = userInterface();
-            if(choice.equals("1")){
-                showAllContacts(infoOB);
-            }else if(choice.equals("2")){
-                addContacts(infoOB);
-                System.out.println(infoOB.get(3).getName());
-                System.out.println(infoOB.get(3).getPhoneNumber());
-            }
+
+                choice = userInterface();
+                if (choice.equals("1")) {
+                    showAllContacts(infoOB);
+                } else if (choice.equals("2")) {
+                    addContacts(infoOB);
+                    System.out.println(infoOB.get(3).getName());
+                    System.out.println(infoOB.get(3).getPhoneNumber());
+                } else if (choice.equals("3")) {
+                    searchContact(infoOB);
+                } else if (choice.equals("4")) {
+                    deleteContacts(infoOB);
+                } else if (choice.equals("5")) {
+                    System.out.println("GoodBye");
+
+                }
+
+            }while(!choice.equals("5"));
 
 
 

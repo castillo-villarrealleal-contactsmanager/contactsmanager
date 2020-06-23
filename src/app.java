@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,6 +16,16 @@ public class app {
             info = Files.readAllLines(definedPath);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return info;
+    }
+
+    public static List<String> fromContact(List<Contact> infoOb){
+        List<String> info = new ArrayList<>();
+        for(Contact string: infoOb){
+            info.add(string.getName());
+            info.add(string.getPhoneNumber());
+
         }
         return info;
     }
@@ -107,7 +118,7 @@ public class app {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         String directory = "src";
 //        Defining the path to contacts.txtx file
@@ -123,14 +134,11 @@ public class app {
 
             do {
 
-
                 choice = userInterface();
                 if (choice.equals("1")) {
                     showAllContacts(infoOB);
                 } else if (choice.equals("2")) {
                     addContacts(infoOB);
-                    System.out.println(infoOB.get(3).getName());
-                    System.out.println(infoOB.get(3).getPhoneNumber());
                 } else if (choice.equals("3")) {
                     searchContact(infoOB);
                 } else if (choice.equals("4")) {
@@ -141,7 +149,9 @@ public class app {
                 }
 
             }while(!choice.equals("5"));
-
+        List<String> groceryList = Arrays.asList("");
+        Files.write(Paths.get(directory,filename), groceryList);
+        Files.write(Paths.get(directory,filename),fromContact(infoOB));
 
 
 

@@ -23,6 +23,7 @@ public class app {
     public static List<String> fromContact(List<Contact> infoOb){
         List<String> info = new ArrayList<>();
         for(Contact string: infoOb){
+
             info.add(string.getName());
             info.add(string.getPhoneNumber());
 
@@ -46,9 +47,12 @@ public class app {
     //METHODS FOR VIEWING ALL CONTACTS. //NOT RETURNING ANYTHING PRINTING TO CONSOLE
     //prints out all objects gives object ID
     public static void showAllContacts(List<Contact> infoOb) {
+        System.out.println("Name | Phone Number");
+        System.out.println("--------------------");
         for(Contact contacts : infoOb) {
-            System.out.println(contacts.getName());
-            System.out.println(contacts.getPhoneNumber());
+
+            System.out.println(contacts.getName() + " | " + contacts.getPhoneNumber());
+//            System.out.println(contacts.getPhoneNumber());
         }
 
     }
@@ -94,7 +98,7 @@ public class app {
                 System.out.println(infoOb.get(i).getPhoneNumber());
                 break;
             } else if(!(infoOb.get(i).getName().equals(contactName))) {
-                System.out.println("This contact is not in our list. Try again. \n");
+                System.out.println("This contact is not in our list. Try again.");
                 System.out.println("");
                 break;
             } else {
@@ -106,7 +110,7 @@ public class app {
 
     public static String userInterface(){
         Scanner userInput = new Scanner(System.in);
-        System.out.println("1. View contacts");
+        System.out.println("\n1. View contacts");
         System.out.println("2. Add a new contact");
         System.out.println("3. Search a contact by name.");
         System.out.println("4. Delete and existing contanct");
